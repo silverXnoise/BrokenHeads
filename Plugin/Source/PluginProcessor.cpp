@@ -221,8 +221,14 @@ void ChowtapeModelAudioProcessor::latencyCompensation()
 
 AudioProcessorEditor* ChowtapeModelAudioProcessor::createEditor()
 {
-    if (openGLHelper == nullptr)
-        openGLHelper = std::make_unique<chowdsp::OpenGLHelper>();
+    // if (openGLHelper == nullptr)
+    // {
+    //     const auto start = std::chrono::high_resolution_clock::now();
+    //     openGLHelper = std::make_unique<chowdsp::OpenGLHelper>();
+    //     const auto end = std::chrono::high_resolution_clock::now();
+    //     auto dur = std::chrono::duration_cast<std::chrono::milliseconds> (end - start).count();
+    //     dur = 0;
+    // }
 
     auto builder = std::make_unique<foleys::MagicGUIBuilder> (magicState);
     builder->registerJUCEFactories();
@@ -282,7 +288,8 @@ AudioProcessorEditor* ChowtapeModelAudioProcessor::createEditor()
     // we need to set resize limits for StandalonePluginHolder
     editor->setResizeLimits (10, 10, 2000, 2000);
 
-    openGLHelper->setComponent (editor);
+    if (openGLHelper != nullptr)
+        openGLHelper->setComponent (editor);
 
     return editor;
 }

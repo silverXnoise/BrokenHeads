@@ -29,7 +29,7 @@ class AutoUpdater : public Component
 {
 public:
     AutoUpdater();
-    ~AutoUpdater();
+    ~AutoUpdater() override;
 
     void paint (Graphics& g) override;
     void resized() override;
