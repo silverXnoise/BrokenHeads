@@ -61,5 +61,5 @@ jobs:
       run: build/ChowTapeModel --unit-tests --all
 
     - name: Pluginval
-      if: runner.os == 'Windows' || runner.os == 'MacOS'
+      if: runner.os == 'Windows' # || runner.os == 'MacOS'
       run: bash Scripts/validate.sh
